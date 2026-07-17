@@ -1,8 +1,8 @@
 {
-    "name": "Telegram Web",
-    "short_name": "Telegram Web",
+    "name": "La Clave Chat",
+    "short_name": "La Clave Chat",
     "start_url": "./",
-    "description": "Telegram is a cloud-based mobile and desktop messaging app with a focus on security and speed.",
+    "description": "La Clave Chat - Mensajeria rapida, segura y con identidad argentina.",
     "icons": [
         {
             "src": "assets/img/icon_square_192.png?v=jw3mK7G9Ry",
@@ -39,8 +39,8 @@
             }]
         }
     },
-    "theme_color": "#ffffff",
-    "background_color": "#ffffff",
+    "theme_color": "#0aa3ff",
+    "background_color": "#0a0a0a",
     "display": "standalone",
     "gcm_sender_id": "122867383838"
 }
