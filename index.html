@@ -39,6 +39,96 @@
     <link rel="manifest" id="manifest">
     <script type="module" crossorigin src="./index-KdoXFpNB.js"></script>
     <link rel="stylesheet" crossorigin href="./index-Fmxv9JQ1.css">
+    <style id="laclav-brand">
+      :root {
+        --laclav-primary: #0aa3ff;
+        --laclav-primary-dark: #0084d4;
+        --laclav-accent: #ff8a3d;
+        --laclav-bg: #0a0a0a;
+        --laclav-bg-soft: #111418;
+        --laclav-text: #ffffff;
+      }
+
+      /* === SPLASH SCREEN LA CLAVE CHAT === */
+      #laclav-splash {
+        position: fixed;
+        inset: 0;
+        z-index: 99999;
+        background: radial-gradient(ellipse at center, #11253a 0%, #050a12 70%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 28px;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        transition: opacity 0.5s ease, visibility 0.5s ease;
+      }
+      #laclav-splash.hide {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
+      #laclav-splash .lc-logo {
+        width: 140px;
+        height: 140px;
+        border-radius: 32px;
+        background: linear-gradient(135deg, var(--laclav-primary) 0%, var(--laclav-accent) 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 20px 60px rgba(10, 163, 255, 0.4);
+        animation: laclav-float 3s ease-in-out infinite;
+      }
+      #laclav-splash .lc-logo svg { width: 80px; height: 80px; }
+      #laclav-splash h1 {
+        margin: 0;
+        font-size: 32px;
+        font-weight: 700;
+        color: #fff;
+        letter-spacing: -0.5px;
+      }
+      #laclav-splash p {
+        margin: 0;
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.6);
+        font-weight: 400;
+      }
+      #laclav-splash .lc-loader {
+        margin-top: 24px;
+        width: 40px;
+        height: 4px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 4px;
+        overflow: hidden;
+        position: relative;
+      }
+      #laclav-splash .lc-loader::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(90deg, transparent, var(--laclav-primary), transparent);
+        animation: laclav-loader 1.5s infinite;
+      }
+      @keyframes laclav-float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-8px); }
+      }
+      @keyframes laclav-loader {
+        0% { transform: translateX(-100%); }
+        100% { transform: translateX(100%); }
+      }
+
+      /* === OVERRIDE LOGIN SCREEN === */
+      body.has-auth-pages {
+        --body-background-color: var(--laclav-bg) !important;
+        --primary-color: var(--laclav-primary) !important;
+        --primary-text-color: #ffffff !important;
+        --secondary-text-color: rgba(255, 255, 255, 0.6) !important;
+      }
+      .auth-pages {
+        background: radial-gradient(ellipse at top, #0d2238 0%, var(--laclav-bg) 70%) !important;
+      }
+    </style>
   </head>
   <body class="animation-level-2 has-auth-pages rounded-sections">
     <!--[if IE]>
@@ -113,5 +203,43 @@
       </div>
     </div>
     <div id="stories-viewer"></div>
+
+    <!-- ====== LA CLAVE CHAT - SPLASH SCREEN ====== -->
+    <div id="laclav-splash">
+      <div class="lc-logo">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" fill="white" fill-opacity="0.95"/>
+          <path d="M12 7v8M8 11h8" stroke="url(#lcgrad)" stroke-width="2.5" stroke-linecap="round"/>
+          <defs>
+            <linearGradient id="lcgrad" x1="8" y1="7" x2="16" y2="15" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#0aa3ff"/>
+              <stop offset="1" stop-color="#ff8a3d"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+      <h1>La Clave Chat</h1>
+      <p>Mensajería argentina · Carga segura</p>
+      <div class="lc-loader"></div>
+    </div>
+
+    <script>
+      // Quitar splash cuando la app principal esté lista
+      (function() {
+        function hideSplash() {
+          var s = document.getElementById('laclav-splash');
+          if (s) {
+            s.classList.add('hide');
+            setTimeout(function() { s.remove(); }, 600);
+          }
+        }
+        // Cuando el JS principal termine de cargar y renderizar
+        window.addEventListener('load', function() {
+          setTimeout(hideSplash, 1200);
+        });
+        // Backup: ocultar a los 8 segundos por las dudas
+        setTimeout(hideSplash, 8000);
+      })();
+    </script>
   </body>
 </html>
