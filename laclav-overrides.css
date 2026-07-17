@@ -1,0 +1,181 @@
+/* La Clave Chat - Brand Overrides */
+:root {
+  --laclav-primary: #0aa3ff;
+  --laclav-primary-dark: #0084d4;
+  --laclav-accent: #ff8a3d;
+  --laclav-bg: #0a0a0a;
+  --laclav-bg-soft: #111418;
+  --laclav-text: #ffffff;
+}
+
+/* === SPLASH SCREEN LA CLAVE CHAT === */
+#laclav-splash {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: radial-gradient(ellipse at center, #11253a 0%, #050a12 70%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+#laclav-splash.hide {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+#laclav-splash .lc-logo {
+  width: 140px;
+  height: 140px;
+  border-radius: 32px;
+  background: linear-gradient(135deg, var(--laclav-primary) 0%, var(--laclav-accent) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 20px 60px rgba(10, 163, 255, 0.4);
+  animation: laclav-float 3s ease-in-out infinite;
+}
+#laclav-splash .lc-logo svg { width: 80px; height: 80px; }
+#laclav-splash h1 {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -0.5px;
+}
+#laclav-splash p {
+  margin: 0;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.6);
+}
+#laclav-splash .lc-loader {
+  margin-top: 24px;
+  width: 40px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+#laclav-splash .lc-loader::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, var(--laclav-primary), transparent);
+  animation: laclav-loader 1.5s infinite;
+}
+@keyframes laclav-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+@keyframes laclav-loader {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* === OVERRIDE LOGIN SCREEN === */
+body.has-auth-pages {
+  --body-background-color: var(--laclav-bg) !important;
+  --primary-color: var(--laclav-primary) !important;
+  --primary-text-color: #ffffff !important;
+  --secondary-text-color: rgba(255, 255, 255, 0.6) !important;
+}
+.auth-pages {
+  background: radial-gradient(ellipse at top, #0d2238 0%, var(--laclav-bg) 70%) !important;
+}
+
+/* === LA CLAVE QUICK REPLIES POPUP === */
+#laclav-quickreplies {
+  position: fixed;
+  z-index: 100000;
+  background: #1a1d23;
+  border: 1px solid rgba(10, 163, 255, 0.3);
+  border-radius: 12px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.05);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  max-height: 320px;
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+  backdrop-filter: blur(20px);
+}
+#laclav-quickreplies.visible { display: flex; }
+#laclav-quickreplies .lqr-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background: linear-gradient(90deg, rgba(10, 163, 255, 0.15), rgba(255, 138, 61, 0.10));
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  font-size: 12px;
+  font-weight: 600;
+  color: #ffffff;
+}
+#laclav-quickreplies .lqr-icon { font-size: 14px; }
+#laclav-quickreplies .lqr-title { flex: 1; }
+#laclav-quickreplies .lqr-close {
+  background: transparent;
+  border: 0;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 4px;
+}
+#laclav-quickreplies .lqr-close:hover { color: #fff; }
+#laclav-quickreplies .lqr-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 4px;
+}
+#laclav-quickreplies .lqr-item {
+  padding: 10px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.12s ease;
+}
+#laclav-quickreplies .lqr-item.active,
+#laclav-quickreplies .lqr-item:hover {
+  background: rgba(10, 163, 255, 0.18);
+}
+#laclav-quickreplies .lqr-cmd {
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 13px;
+  color: var(--laclav-primary);
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+#laclav-quickreplies .lqr-sub {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+}
+#laclav-quickreplies .lqr-empty {
+  padding: 20px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 12px;
+}
+#laclav-quickreplies .lqr-footer {
+  padding: 8px 14px;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.4);
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 600px) {
+  #laclav-splash .lc-logo { width: 110px; height: 110px; }
+  #laclav-splash h1 { font-size: 26px; }
+  #laclav-quickreplies { font-size: 14px; }
+}
+@media (max-width: 380px) {
+  #laclav-splash { gap: 20px; }
+  #laclav-splash .lc-logo { width: 90px; height: 90px; border-radius: 24px; }
+  #laclav-splash .lc-logo svg { width: 50px; height: 50px; }
+  #laclav-splash h1 { font-size: 22px; }
+  #laclav-splash p { font-size: 12px; }
+}
